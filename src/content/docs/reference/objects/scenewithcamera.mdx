@@ -1,0 +1,32 @@
+---
+title: SceneWithCamera
+description: The SceneWithCamera object.
+---
+
+The SceneWithCamera class is a [Scene](/reference/objects/scene) with added control for Cameras. Most likely, this is the class that you will be extending for your animations.
+
+## Members
+
+### `camera: Camera?`
+
+The camera is what the scene will control.
+
+### `cameraTweenPlaying: boolean`
+
+Whether or not a tween on the camera is currently playing.
+
+## Methods
+
+### `moveCameraTo(cframe: CFrame, time: number, easing?: Enum.EasingStyle, direction?: Enum.EasingDirection, repeatCount?: number, reverses?: boolean, otherProps?: WritableInstanceProperties<Camera>)`
+
+If the camera exists, and no tween is currently playing. The camera will move to the provided CFrame.
+
+**Parameters**:
+
+- `cframe` - Where to move the camera to.
+- `time` - How long this movement takes.
+- `easing` - How to ease the camera. `Optional` 
+- `direction` - The easing direction `Optional`
+- `repeatCount` - How many times the movement repeats `Optional`
+- `reverses` - Does the tween reverse? `Optional`
+- `otherProps` - Other native properties of the Camera `Optional`

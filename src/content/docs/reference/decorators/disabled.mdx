@@ -1,0 +1,30 @@
+---
+title: Disabled 
+description: The Disabled decorator.
+---
+
+The Disabled decorator will mark the given [MObject](/manim-docs/reference/objects/mobject) as disabled. Meaning that Manim will not render / register it when initialized.
+
+```ts frame=none {5, 8}
+import { Manim, ObjectTypes } from "@rbxts/manim"
+
+type MyObjectAttributes = {} & ObjectTypes.MyObjectAttributes
+
+@Manim.Decorators.Disabled()
+export class MyObject extends Manim.Objects.MObject<MyObjectAttributes> {
+    construct(): void {
+        print("This will not print because this MObject is disabled")
+    }
+
+    tick(dt: number): void {}
+
+    constructor(params: MyObjectAttributes) {
+        super();
+        this.params = params;
+    }
+}
+
+Manim.init() // Call init() so the tick() method starts running.
+```
+
+In the example above, after calling **init()** the manim Registry takes over and will call tick() until the MObject is destroyed or disabled.

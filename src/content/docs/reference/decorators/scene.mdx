@@ -1,0 +1,37 @@
+---
+title: Scene 
+description: The Scene decorator.
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+<Aside type="note" title="Similar names">
+This is about the Scene decorator, the [Scene](/manim-docs/reference/objects/scene) class is what your code will inherit from.
+</Aside>
+
+The Scene decorator will mark a given class as a [Scene](/manim-docs/reference/objects/scene).
+
+```ts frame=none {4-10}
+import { Manim } from "@rbxts/manim";
+import { Workspace } from "@rbxts/services";
+
+@Manim.Decorators.Scene(
+	{
+		name: "MyScene",
+		destroyOnCompleted: false,
+	},
+	Workspace,
+)
+@Manim.Decorators.Ticker()
+export class MyScene extends Manim.SceneWithCamera {
+	construct(): void {}
+
+	tick(dt: number): void {
+		this.tickAllChildren(dt); // Recursively update all children.
+	}
+}
+
+Manim.init();
+```
+
+In the example above, after calling **init()** the manim Registry takes over and will call `construct()`, and also `tick()` because our scene is marked as so.

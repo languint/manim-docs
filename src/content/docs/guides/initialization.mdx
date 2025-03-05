@@ -1,0 +1,28 @@
+---
+title: Initialization
+description: How to initialize Manim.
+---
+
+After creating your scene, you can then make a call to `Manim.init()`
+
+```ts frame=none {18}
+import { Manim, ObjectTypes } from "@rbxts/manim"
+
+type MyObjectAttributes = {
+    color: Color3;
+} & ObjectTypes.MyObjectAttributes
+
+export class MyObject extends Manim.Objects.MObject<MyObjectAttributes> {
+    construct(): void {}
+
+    tick(dt: number): void {}
+
+    constructor(params: MyObjectAttributes) {
+        super();
+        this.params = params;
+    }
+}
+
+Manim.init() // Call Manim.init() to render all registered scenes.
+
+```

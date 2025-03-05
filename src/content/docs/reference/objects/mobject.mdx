@@ -1,0 +1,79 @@
+---
+title: MObject
+description: Manim.MObject
+---
+
+MObjects (Mathematical Objects) are the basis of most classes in Manim. They are abstract and cannot be used directly; you must instead define a class inheriting from this class.
+
+## Attributes
+
+You can optionally pass an attributes interface which will add those fields to the constructor.
+
+```ts
+import { Manim, ObjectTypes } from "@rbxts/manim"
+
+type MyObjectAttributes = {
+    color: Color3;
+} & ObjectTypes.MyObjectAttributes
+
+export class MyObject extends Manim.Objects.MObject<MyObjectAttributes> {
+    construct(): void {}
+
+    tick(dt: number): void {}
+
+    constructor(params: MyObjectAttributes) {
+        super();
+        this.params = params;
+    }
+}
+
+```
+
+## Members
+
+### `params`
+
+:::caution 
+This may be undefined. Since Scenes are inherited from MObjects, but they are never *constructed*, this will be undefined. However, in the case of scenes, when decorated with **@Manim.Decorators.Scene()**, the parameters will be set based on the arguments passed in there.
+:::
+
+The given parameters, it has the type of T if given, otherwise MyObjectAttributes.
+
+## Methods
+
+### `addChild(name: string, child: MObject)`
+
+Adds a given child to the `__children` member and sets the child's `__parent` to `this`.
+
+**Parameters**:
+
+- `name` - The name of the child that can be used to access it later.
+- `child` - The child object to add.
+
+### `getChild<T?>(name: string)`
+
+Retrieves a child with the given name. If given a generic type, the child's params member will be typed with the given Attributes.
+
+### `removeChild(name: string)`
+
+Removes a child from the `__children` parameter of this object, and calls the `delete()` method on the object.
+
+**Parameters**:
+
+- `name` - The name of the child to remove.
+
+### `getOutputInstance()`
+
+Returns the "real instance" to output to, e.g `Workspace`. Defaults to the object's `__parent` if the parent does not exist it returns the Instance's `__outputInstance`.
+
+### `abstract construct()`
+
+This is the entry point of the MObject, this is where all code should be written.
+
+### `abstract tick(dt: number)`
+
+Updates the mobject.
+
+:::tip
+Use `Manim.Decorators.Ticker()` to automatically call the `tick()` method on **HeartBeat**.
+:::

@@ -1,0 +1,39 @@
+---
+title: Starting Guide
+description: A guide to create a new Manim project.
+---
+
+Manim is a flexible math animation engine.
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<Card title="Installation" icon="seti:shell"> 
+```sh frame=none
+npm install @rbxts/manim
+```
+</Card>
+
+Manim animations are contained in `Scenes`. Each scene must be decorated with `@Manim.Decorators.Scene`.
+
+```sh frame=none
+import { Manim } from "@rbxts/manim";
+import { Workspace } frorm "@rbxts/services";
+
+@Manim.Decorators.Scene(
+	{
+		name: "VectorTestScene",
+		destroyOnCompleted: false,
+	},
+	Workspace,
+)
+export class MyScene extends Manim.SceneWithCamera {
+    construct(): void {
+	}
+
+	tick(dt: number): void {
+		this.tickAllChildren(dt);
+	}
+}
+```
+
+Notice that we have to define the `tick()` method. This is optional, and you can choose whether or not to have a static scene.

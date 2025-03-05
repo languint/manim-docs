@@ -1,0 +1,32 @@
+---
+title: Ticker 
+description: The Ticker decorator.
+---
+
+The Ticker decorator will register the given [MObject](/manim-docs/reference/objects/mobject) with the [Registry](/manim-docs/reference/registry). Then when you [initialize](/manim-docs/guides/initialization) manim, all of the found `tick()` functions will be connected to `RunService.Heartbeat()`.
+
+```ts frame=none {7, 12}
+import { Manim, ObjectTypes } from "@rbxts/manim"
+
+type MyObjectAttributes = {
+    color: Color3;
+} & ObjectTypes.MyObjectAttributes
+
+@Manim.Decorators.Ticker()
+export class MyObject extends Manim.Objects.MObject<MyObjectAttributes> {
+    construct(): void {}
+
+    tick(dt: number): void {
+        print("Ticked!: " + dt + "ms.")
+    }
+
+    constructor(params: MyObjectAttributes) {
+        super();
+        this.params = params;
+    }
+}
+
+Manim.init() // Call init() so the tick() method starts running.
+```
+
+In the example above, after calling **init()** the manim Registry takes over and will call tick() until the MObject is destroyed or disabled.

@@ -1,0 +1,30 @@
+---
+title: Scene
+description: The Scene object.
+---
+
+import { Aside } from "@astrojs/starlight/components"
+
+<Aside type="note" title="Similar names">
+This is about the Scene class, the [Scene](/manim-docs/reference/decorators/scene) decorator is what your Scene classes will be decorated with.
+</Aside>
+
+The scene is a particular type of MObject that will hold the code for rendering the animations. The Scene is *abstract* meaning that you have to use a derived class for your animations, see [SceneWithCamera](/reference/objects/scenewithcamera).
+
+## Methods
+
+### `add(objs: { k: [string]: MObject })`
+
+Adds all given child MObjects to the scene.
+
+**Parameters**:
+
+- `objs` - A object where the key is the name of each child, and the value is the object itself.
+
+### `get(objs: string[])`
+
+Returns name-value pairs for each of the given objects.
+
+**Parameters**:
+
+- `objs` - The names of each child to get.
