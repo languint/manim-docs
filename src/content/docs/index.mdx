@@ -16,19 +16,19 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { SEO } from "astro-seo";
+import { Card, CardGrid } from "@astrojs/starlight/components";
 
-<CardGrid stagger> 
-	<Card title="Extensible" icon="add-document">
-		Manim uses abstract classes, allowing you to add your own objects and behavior.
-	</Card>
-	<Card title="Easy to use" icon="pencil">
-		Manim uses decorators which makes defining scenes easy and readable. 
-	</Card>
+<CardGrid stagger>
+  <Card title="Extensible" icon="add-document">
+    Manim uses abstract classes, allowing you to add your own objects and
+    behavior.
+  </Card>
+  <Card title="Easy to use" icon="pencil">
+    Manim uses decorators which makes defining scenes easy and readable.
+  </Card>
 </CardGrid>
 
-<Card title="Installation" icon="rocket"> 
-```sh
-npm install @rbxts/manim
-```
+<Card title="Installation" icon="rocket">
+  ```sh npm install @rbxts/manim ```
 </Card>

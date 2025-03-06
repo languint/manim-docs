@@ -6,6 +6,7 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   site: "https://languint.github.io",
   base: "/manim-docs",
+  
   integrations: [
     starlight({
       title: "@rbxts/manim",
